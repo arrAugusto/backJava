@@ -11,7 +11,7 @@ package Struct;
  */
 public class TipoCambioDiaStruct {
 
-    String fecha = null;
+    String fecha = "";
     float tipoCambio;
 
     public TipoCambioDiaStruct() {
