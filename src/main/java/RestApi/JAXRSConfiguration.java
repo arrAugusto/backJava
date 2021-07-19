@@ -1,4 +1,4 @@
-package com.mycompany.mavenproject1;
+package com.mycompany.payarawsrbanguat;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

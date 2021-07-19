@@ -14,11 +14,7 @@ public class ConsumoSoap {
             wsBancoGuatemala.TipoCambioSoap port = service.getTipoCambioSoap();
             // TODO process result here
             wsBancoGuatemala.InfoVariable result = port.tipoCambioDia();
+            //retornando el string de el xml
             return result.getCambioDolar().getVarDolar().get(0);
-        
-
-
-        
-        
     }
 }

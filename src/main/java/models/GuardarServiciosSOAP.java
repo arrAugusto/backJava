@@ -23,13 +23,12 @@ public class GuardarServiciosSOAP {
         tipoCambioDiaStruct.setFecha(arrayDolar.getFecha());
         //Setenado tipo de cambio
         tipoCambioDiaStruct.setTipoCambio(arrayDolar.getReferencia());
-        
         //Instanciar la conexion sql
         ConexionSQL conexionSQL = new ConexionSQL();
         //Obtener la conexion sql
         Connection regConn = conexionSQL.getConnection();
         
-        String query = "CALL `spNewTipoCambioDia` ("+tipoCambioDiaStruct.getFecha()+", "+tipoCambioDiaStruct.getTipoCambio()+")";
+        String query = "CALL `db_banco_guatemala`.`spNewTipoCambioDia` ('"+tipoCambioDiaStruct.getFecha()+"', "+tipoCambioDiaStruct.getTipoCambio()+")";
         try {
             Statement statement = regConn.createStatement();
             statement.executeUpdate(query);

@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
@@ -20,9 +13,8 @@ import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import models.GuardarServiciosSOAP;
-import wsBancoGuatemala.InfoVariable;
 import wsBancoGuatemala.VarDolar;
-import wsBancoGuatemala.Variable;
+
 
 /**
  * REST Web Service
@@ -43,22 +35,21 @@ public class GenericResource {
     }
 
     /**
-     * Retrieves representation of an instance of com.mycompany.mavenproject1.GenericResource
+     * Retrieves representation of an instance of
+     * com.mycompany.payarawsrbanguat.GenericResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getJson() {
-        
+        //
         GuardarServiciosSOAP guardarServiciosSOAP = new GuardarServiciosSOAP();
-        List<String> miLista = new ArrayList<String>();
-        VarDolar variableArray = guardarServiciosSOAP.guardarTipoCambioDia();
-        //ResponseJSON  response = new ResponseJSON(variableArray.getFecha(), variableArray.getReferencia());
-
-        
-        
+        VarDolar responseData = guardarServiciosSOAP.guardarTipoCambioDia();
+        String fecha = responseData.getFecha();
+        Float referencia = responseData.getReferencia();
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-        jsonObjectBuilder.add("datosResponse", "");
+        jsonObjectBuilder.add("response", "Fecha dia "+fecha+"Tipo De cambio "+referencia);
         JsonObject jsonObj = jsonObjectBuilder.build();
         return Response.ok(jsonObj.toString())
                 .header("Access-Control-Allow-Origin", "*")
@@ -70,6 +61,7 @@ public class GenericResource {
 
     /**
      * PUT method for updating or creating an instance of GenericResource
+     *
      * @param content representation for the resource
      */
     @PUT
